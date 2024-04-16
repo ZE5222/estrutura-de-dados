@@ -1,45 +1,31 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include "lista_encadeada.h"
 
-typedef struct Ponto{
-    int x;
-    int y;
-
-} Ponto;
 
 int main(int argc, char *argv[]){
 
-    int a = 2;
-    int b = a;
-    int *p;
+    No* n1 = no('A', NULL);
+    No* n2 = no('B', NULL);
+    No* n3 = no('C', NULL);
+    No* n4 = no('J', NULL);
+    No* n5 = no('Y', NULL);
 
-    printf("a - %d\t b - %d\n", a, b);
-    printf("&a - %p\t &b - %p\n", &a, &b);
+    No* Hc = copiar_lista(H);
 
-    b = 3;
-    printf("a - %d\t b - %d\n", a, b);
+   imprimir_lista(H);
+   printf("copia");
+   imprimir_lista(Hc);
 
-    a - 4;
-    printf("a - %d\t b - %d\n", a, b);
+   H->proximo_no->valor = 'X';
+   Hc->valor = 'y';
 
-    printf("&p - %p\t p - %p\t *p - %d\n", &p, p,*p);
+    printf("\n");
+    imprimir_lista(H);
+    printf("copia");
+    imprimir_lista(Hc);
 
-
-    *p = 5;
-    printf("a - %d\t b - %d\n", a, b);
-
-    p = malloc(sizeof(int)*5);
-    p[0] = 3;
-    p[1] = 55;
-
-    printf("&p - %p\t p - %p\t *p - %d\n", &p, p,*p);
-    printf("&p - %p\t p - %p\t *p - %d\n", &p, &p[1],*p[1]);
-
-    Ponto A;
-    A.x = 4;
-    A.y = 4;
-printf("A(%d, %d)\n", A.x, A.y);
-
-
+    printf("\n qtd = %d", qtd_nos(H));
+    printf("\n copia qtd = %d", qtd_nos(Hc));
     exit(0);
 }
