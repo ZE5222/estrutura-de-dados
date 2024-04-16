@@ -7,7 +7,9 @@ No* no(char valor, No* proximo_no){
     no->valor = valor;
     no->proximo_no = proximo_no;
     return no;
-}void inserir_no(No* H, No* no){
+}
+
+void inserir_no(No* H, No* no){
     if(H != NULL){
         if(H->proximo_no == NULL){
             H->proximo_no = no;
@@ -16,22 +18,29 @@ No* no(char valor, No* proximo_no){
             inserir_no(H->proximo_no, no);
         }
     }
-}void imprimir_lista(No* H){
+}
+
+void imprimir_lista(No* H){
     if(H != NULL){
          printf("%c", H->valor );
-         inserir_no(H->proximo_no);
+         imprimir_lista(H->proximo_no);
     }
-}int qtd_nos(No* H){
+}
+
+int qtd_nos(No* H){
     if( H != NULL){
         return 1 + qtd_nos(H->proximo_no);
     }return 0;
 }
+
 No* copiar_lista(No* H){
     if(H != NULL){
         return no(H->valor, copiar_lista(H->proximo_no));
 
     }return NULL;
-}void liberar_lista(No* H){
+}
+
+void liberar_lista(No* H){
     if(H != NULL){
         liberar_lista(H->proximo_no);
         free(H);

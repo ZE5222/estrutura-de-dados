@@ -5,7 +5,7 @@
 
 int main(int argc, char *argv[]){
 
-    No* n1 = no('A', NULL);
+    No* H = no('A', NULL);
     No* n2 = no('B', NULL);
     No* n3 = no('C', NULL);
     No* n4 = no('J', NULL);
