@@ -1,31 +1,44 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include "lista_encadeada.h"
+#include "bubble_sort.h"
 
+int main(int argc, char* argv[]){
+    
+    FILE *fp = fopen(argv[1], "r");
 
-int main(int argc, char *argv[]){
+    if(fp == NULL){
+        printf("Erro ao abrir arquivo %s\n", argv[1]);
+        exit(1);
+    }
+    int i;
+    int qtd_n = 0;
+    int *vetor_n;
+    while( fscanf(fp, "%d\n", &i) != EOF){
+        qtd_n++;
+    }
+    vetor_n = malloc(sizeof(int)*qtd_n);
+    
+    rewind(fp);
+    i = 0;
+    while( fscanf(fp, "%d\n", &vetor_n[i]) != EOF){
+        i++;
+    }
 
-    No* H = no('A', NULL);
-    No* n2 = no('B', NULL);
-    No* n3 = no('C', NULL);
-    No* n4 = no('J', NULL);
-    No* n5 = no('Y', NULL);
+    fclose(fp);
 
-    No* Hc = copiar_lista(H);
+    bubble_sort(vetor_n, qtd_n);
 
-   imprimir_lista(H);
-   printf("copia");
-   imprimir_lista(Hc);
+    FILE* arq_saida = fopen("saida.txt", "w");
+    if(arq_saida == NULL){
+        printf("Erro ao abrir arquivo saida.txt");
+        exit(1);
+    }
 
-   H->proximo_no->valor = 'X';
-   Hc->valor = 'y';
+    for(i = 0; i < qtd_n; i++){
+        fprintf(arq_saida, "%d\n", vetor_n[i]);
+    }
 
-    printf("\n");
-    imprimir_lista(H);
-    printf("copia");
-    imprimir_lista(Hc);
+    fclose(arq_saida);
 
-    printf("\n qtd = %d", qtd_nos(H));
-    printf("\n copia qtd = %d", qtd_nos(Hc));
     exit(0);
 }
